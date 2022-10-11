@@ -84,6 +84,46 @@ void _qsort(void* v, int size, int left, int right,
     _qsort(v, size, left, last - 1, comp);
     _qsort(v, size, last + 1, right, comp);
 }
+
+// A binary search based function to find the position
+// where item should be inserted in a[low..high]
+int binarySearch(int a[], int item, int low, int high)
+{
+    if (high <= low)
+        return (item > a[low])?  (low + 1): low;
+ 
+    int mid = (low + high)/2;
+ 
+    if(item == a[mid])
+        return mid+1;
+ 
+    if(item > a[mid])
+        return binarySearch(a, item, mid+1, high);
+    return binarySearch(a, item, low, mid-1);
+}
+ 
+// Function to sort an array a[] of size \'n\'
+void insertionSort(int a[], int n)
+{
+    int i, loc, j, selected;
+ 
+    for (i = 1; i < n; ++i)
+    {
+        j = i - 1;
+        selected = a[i];
+ 
+        // find location where selected should be inserted
+        loc = binarySearch(a, selected, 0, j);
+ 
+        // Move all elements after location to create space
+        while (j >= loc)
+        {
+            a[j+1] = a[j];
+            j--;
+        }
+        a[j+1] = selected;
+    }
+}
   
 int main()
 {
@@ -118,6 +158,26 @@ int main()
             printf("%d ", b[i]);
     printf("\n");
     printf("RUN TIME:\t%f", time_taken_p);    
+
+
+    int m[] = {37, 23, 0, 17, 12, 72, 31,46, 100, 88, 54};
+    int n = sizeof(m)/sizeof(m[0]), i;
+
+    clock_t t_m;
+    t_m = clock();
+    insertionSort(m, n);
+    t_m = clock();
+    double time_taken_m = ((double)t_m)/CLOCKS_PER_SEC;
+
+    printf("\n\nATTENDED:\t0 12 17 23 31 37 46 54 72 88 100");
+    printf("\nOUTPUT IS:\t");
+    for (i = 0; i < n; i++)
+        printf("%d ",m[i]);
+    printf("\n");
+    printf("RUN TIME:\t%f\n", time_taken_m);
+ 
+
+ 
   
     return 0;
 }
