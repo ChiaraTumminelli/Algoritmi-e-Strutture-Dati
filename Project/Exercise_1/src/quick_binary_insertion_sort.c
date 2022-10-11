@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
   
 // function for comparing two strings. This function
 // is passed as a parameter to _quickSort() when we
@@ -86,20 +87,37 @@ void _qsort(void* v, int size, int left, int right,
   
 int main()
 {
-    // C Code
-    char* a[] = {"bbc", "xcd", "ede", "def",
-            "afg", "hello", "hmmm", "okay", "how" };
+
+    char* a[] = {"bbc", "xcd", "ede", "def", "afg", "hello", "hmmm", "okay", "how" };
   
     int b[] = { 45, 78, 89, 65, 70, 23, 44 };
     int* p = b;
+
+    clock_t t_a;
+    t_a = clock();
     _qsort(a, sizeof(char*), 0, 8, (int (*)(void*, void*))(cmpstr));
-    _qsort(p, sizeof(int), 0, 6, (int (*)(void*, void*))(cmpnum));
-  
-    for (int i = 0; i < 9; i++)
-        printf("%s ", a[i]);
+    t_a = clock();
+    double time_taken_a = ((double)t_a)/CLOCKS_PER_SEC;
+
+    printf("ATTENDED:\tafg bbc def ede hello hmmm how okay xcd");
+    printf("\nOUTPUT IS:\t");
+        for (int i = 0; i < 9; i++)
+            printf("%s ", a[i]);
     printf("\n");
+    printf("RUN TIME:\t%f", time_taken_a);
+
+    clock_t t_p;
+    t_p = clock();
+    _qsort(p, sizeof(int), 0, 6, (int (*)(void*, void*))(cmpnum));
+    t_p = clock();
+    double time_taken_p = ((double)t_p)/CLOCKS_PER_SEC;
+
+    printf("\n\nATTENDED:\t23 44 45 65 70 78 89");
+    printf("\nOUTPUT IS:\t");
+        for (int i = 0; i < 7; i++)
+            printf("%d ", b[i]);
+    printf("\n");
+    printf("RUN TIME:\t%f", time_taken_p);    
   
-    for (int i = 0; i < 7; i++)
-        printf("%d ", b[i]);
     return 0;
 }
