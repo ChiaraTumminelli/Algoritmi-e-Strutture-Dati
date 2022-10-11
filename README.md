@@ -1,4 +1,8 @@
-# Laboratorio per il corso di Algoritmi e Strutture Dati: regole d'esame, indicazioni generali e suggerimenti, consegne per gli esercizi
+# ALGORITMI E STRUTTURE DATI (ASD)
+
+###### Progetto d'esame realizzato per il corso di Algoritmi e Strutture Dati a.a. 2021/2022 
+
+---
 
 # Regole d'esame
 
