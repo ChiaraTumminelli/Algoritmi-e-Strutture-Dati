@@ -1,0 +1,33 @@
+<project name="Exercise_3" default="run">
+    <property name="src.dir" location="src"/>
+    <property name="classes.dir" location="classes"/>
+    <property name="build.dir" location="build"/>
+    <property name="lib.dir" location="lib"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${classes.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" includeantruntime="on"/>
+    </target>
+
+    <target name="test" depends="compile">
+        <junit printsummary="yes" haltonfailure="yes">
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${classes.dir}"/>
+            </classpath>
+            <formatter type="plain" usefile="false"/>
+            <test name="HeapMinTest" todir="${build.dir}"/>
+        </junit>
+    </target>
+</project>   
