@@ -296,3 +296,7 @@ Ogni record contiene i seguenti dati:
 Un'implementazione corretta dell'algoritmo di Dijkstra, eseguita sui dati
 contenuti nel file italian\_dist\_graph.csv, dovrebbe determinare un cammino
 minimo tra "torino" e "catania" lungo ~1207.68 Km.
+
+
+https://user-images.githubusercontent.com/61294929/223900492-6d8fae88-89fd-4329-a42d-714e2b28f8a5.mp4
+
